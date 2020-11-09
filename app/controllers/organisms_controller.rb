@@ -1,17 +1,14 @@
 class OrganismsController < ApplicationController
 
-    def show family
-
-    end
-
-    def show class
+    def show
     end
 
     def search_by_species
-        url =`https://apps.des.qld.gov.au/species/?op=speciessearch&kingdom=#{animal}&species=#{koala}`
+        url ="http://apps.des.qld.gov.au/species/?op=speciessearch&kingdom=#{params[:kingdom]}&species=#{params[:animal]}"
+        # encoded_url = URI.encode(url)
         resp = RestClient.get(url)
         final = JSON.parse(resp)
-        puts final
+        render :json => final
     end
 
 
