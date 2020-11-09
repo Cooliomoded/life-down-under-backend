@@ -2,5 +2,7 @@ Rails.application.routes.draw do
   resources :favorites
   resources :organisms
   resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  post "search_by_species", to: "organisms#search_by_species", as: "search_by_species"
+  
 end
