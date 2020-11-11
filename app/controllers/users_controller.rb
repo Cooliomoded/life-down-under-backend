@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         if user.valid?
             user.save
             # session[:user_id] = user.id
-            render json: {user: user}
+            render json: user.to_json(:include => [:favorites])
             #then redirect to mainpage?
         # else
         #     flash[:errors] = user.errors.full_messages
@@ -40,8 +40,8 @@ class UsersController < ApplicationController
     def login
         user = User.find_by(username: params[:username])
         if user.valid?
-            session[:user_id] = user.id
-            render :json => user
+            # session[:user_id] = user.id
+            render :json => user.to_json(:include => [:favorites])
             #then redirect to mainpage?
         else
             flash[:errors] = user.errors.full_messages
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if user.valid?
             user.save
-            render :json => user
+            render :json => user.to_json(:include => [:favorites])
         end
     end
 

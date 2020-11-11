@@ -4,7 +4,7 @@ class OrganismsController < ApplicationController
     end
 
     def create
-        organism = Organism.new(organism_params)
+        organism = Organism.find_or_create_by(organism_params)
         if organism.valid?
             organism.save
             render :json => organism

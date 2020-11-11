@@ -15,7 +15,10 @@ class FavoritesController < ApplicationController
     end
 
     def create
-        #what happens here?
+        favorite = Favorite.new(favorite_params)
+        if favorite.valid?
+            favorite.save
+        end
     end
 
     private
