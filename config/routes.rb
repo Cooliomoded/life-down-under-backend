@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post "/search_by_taxonID", to: "organisms#search_by_taxonID", as: "search_by_taxonID"
   post "/users/login", to: "users#login", as: "login"
   post "/users/signup", to: "users#create", as: "signup"
+  post "/organisms/create_organism", to: "organisms#create", as: "create_organism"
+  post "/favorites/create_favorite", to: "favorites#create", as: "create_favorite"
 end
