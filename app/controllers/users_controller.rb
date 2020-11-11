@@ -17,13 +17,16 @@ class UsersController < ApplicationController
     end
 
     def create 
-        user = User.create(user_params)
+        byebug
+        user = User.new(user_params)
         if user.valid?
-            session[:user_id] = user.id
+            user.save
+            # session[:user_id] = user.id
+            render json: {user: user}
             #then redirect to mainpage?
-        else
-            flash[:errors] = user.errors.full_messages
-            #redirect back to create user?
+        # else
+        #     flash[:errors] = user.errors.full_messages
+        #     #redirect back to create user?
         end
     end
 
@@ -36,7 +39,7 @@ class UsersController < ApplicationController
     end
 
     def login
-        user = User.find_by(name: params[:username])
+        user = User.find_by(username: params[:username])
         if user.valid?
             session[:user_id] = user.id
             render :json => user
@@ -44,6 +47,14 @@ class UsersController < ApplicationController
         else
             flash[:errors] = user.errors.full_messages
             #redirect back to create user?
+        end
+    end
+
+    def signup
+        user = User.new(user_params)
+        if user.valid?
+            user.save
+            render :json => user
         end
     end
 
