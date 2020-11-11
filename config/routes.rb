@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   
   post "/search_by_species", to: "organisms#search_by_species", as: "search_by_species"
   post "/search_by_taxonID", to: "organisms#search_by_taxonID", as: "search_by_taxonID"
-  
+  post "/users/login", to: "users#login", as: "login"
 end

@@ -35,6 +35,18 @@ class UsersController < ApplicationController
         #redirect back to user page?
     end
 
+    def login
+        user = User.find_by(name: params[:username])
+        if user.valid?
+            session[:user_id] = user.id
+            render :json => user
+            #then redirect to mainpage?
+        else
+            flash[:errors] = user.errors.full_messages
+            #redirect back to create user?
+        end
+    end
+
     def destroy
         user.destroy
     end
