@@ -1,6 +1,13 @@
 class OrganismsController < ApplicationController
 
+    def index
+        organisms = Organism.all
+        render :json => organisms
+    end
+
     def show
+        organism = Organism.find(params[:id])
+        render :json => organism
     end
 
     def create
@@ -26,6 +33,8 @@ class OrganismsController < ApplicationController
         final = JSON.parse(resp)
         render :json => final
     end
+
+    
 
     private
     def organism_params
