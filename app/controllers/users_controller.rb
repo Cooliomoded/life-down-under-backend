@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-    before_action :get_user, only: [:destroy]
-
     def index
         users = User.all
         render :json => users
@@ -58,17 +56,16 @@ class UsersController < ApplicationController
     end
 
     def destroy
+        user = User.find(params[:id])
         user.destroy
+        users = User.all
+        render :json => users
     end
 
     private
 
     def user_params
         params.require(:user).permit(:username, :bio, :profile_pic, :location, :password)
-    end
-
-    def get_user
-        user = User.find(params[:id])
     end
 
 end
