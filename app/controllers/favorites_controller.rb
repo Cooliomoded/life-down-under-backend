@@ -15,9 +15,9 @@ class FavoritesController < ApplicationController
     end
 
     def create
-        favorite = Favorite.new(favorite_params)
+        favorite = Favorite.find_or_create_by(favorite_params)
         if favorite.valid?
-            favorite.save
+            render :json => favorite
         end
     end
 
