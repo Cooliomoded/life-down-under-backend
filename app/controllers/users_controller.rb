@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :get_user, only: [:show, :edit, :update, :destroy]
+    before_action :get_user, only: [:edit, :update, :destroy]
 
     def index
         users = User.all
@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     end
 
     def show
+        user = User.find(params[:id])
+        render :json => user
     end
 
     def new
