@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post "/users/signup", to: "users#create", as: "signup"
   post "/organisms/create_organism", to: "organisms#create", as: "create_organism"
   post "/favorites/create_favorite", to: "favorites#create", as: "create_favorite"
+  patch "/users/:id", to: "users#update", as: "update_user"
 end

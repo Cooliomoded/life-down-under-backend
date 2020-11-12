@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :get_user, only: [:edit, :update, :destroy]
+    before_action :get_user, only: [:destroy]
 
     def index
         users = User.all
@@ -31,12 +31,10 @@ class UsersController < ApplicationController
         end
     end
 
-    def edit
-    end
-
     def update
+        user = User.find(params[:id])
         user.update(user_params)
-        #redirect back to user page?
+        render :json => user
     end
 
     def login
